@@ -1,0 +1,106 @@
+\section{DES-history}
+
+\subsection{What was/is the name of the authority that called out for the development of DES?}
+\label{section:1a}
+
+\subsection{In which year DES was standardised?}
+\label{section:1b}
+
+\subsection{Which authority also was said to have influenced the standardisation of DES?}
+\label{section:1c}
+
+\subsection{Which company did submit the cipher?}
+\label{section:1d}
+
+\subsection{Which kind of structure is used in Lucifer?}
+\label{section:1e}
+
+\subsection{Which key length was supported by Lucifer, originally?}
+\label{section:1f}
+
+
+\section{Basics of block ciphers}
+
+\subsection{what meaning does the (balanced) feistel-network have for the processing of data?}
+\label{section:2a}
+
+\subsection{Point out the characteristics of a feistel-structure related to the encryption and decryption.}
+\label{section:2b}
+
+\subsection{Claude Shannon says there are two types of primitive Operations so build up strong encryption algorithms. Name and describe these two in a few sentences.}
+\label{section:2c}
+
+\section{Avalanche effect in DES}
+
+\begin{comment}
+For a good block cipher it is important that a small change in the input bits results in a great change
+in the output bits( This effect is called avalanche effect). In the following we will try to evaluate this
+effect in DES. For this we use an input string with an one at the 19th position(x25 = 1). All other
+Bits are set to zeros. The 56 bits of the key also are set to zero(this means all the round keys are zero.
+Remember that the input bit string first runs through the initial permutation!)
+\end{comment}
+
+\subsection{Which S-boxes are influenced by this bit in the first round. Also calculate the input bits of all S-boxes.}
+\label{section:3a}
+
+\subsection{Calculate the bit string at the end of the first round. (L1 und R1)}
+\label{section:3b}
+
+\subsection{Calculate the output bits for the case that all input bits are zeros! (x25=0). How many bits did change in L1 and R1 compared to exercise b)?}
+\label{section:3c}
+
+
+\section{Non-linearity of S-boxes}
+
+\begin{comment}
+An important property of DES is the non-linearity of the S-boxes. In this exercise we want to verify
+this property by comparing the output bits for different input bits in a specific S-box S i. Show that for
+S 5 the following computation rule can be applied: 2
+S i(x1) bXOR S i(x2) , S i(x1 bXOR x2):
+"bXOR" is called a bitwise XOR.
+\end{comment}
+
+\subsection{x1 = 000001, x2 = 100000}
+\label{section:4a}
+
+\subsection{x1 = 001100, x2 = 111001}
+\label{section:4b}
+
+\subsection{x1 = 010011, x2 = 011110}
+\label{section:4c}
+
+
+\section{Brute-Force Attacke auf den DES}
+
+\begin{comment}
+An often used method to evaluate the security of an symmetric encryption algorithm against a bruteforce
+attack is the calculation of the costs of constructing a key search machine. In the next exercise
+we will have a look at this thematic.
+Consider a DES-chip with internal parallel hardware structure that can perform a DES-encryption in
+a single cycle(So it can test one key per cycle). We further assume that we can run the chips with a
+frequency of 126 MHz.
+\end{comment}
+
+\subsection{How many chips of this kind do we have to run parallel so we can calculate the DES-Key in a single day?}
+\label{section:5a}
+
+\subsection{How much would these chips cost if one chip costs 10 Euro and we calculate 100\% overhead for running the chips parallel, the power supply and anything else?}
+	\label{section:5b}
+	
+\subsection{Why is this design of such a key searching machine only the upper limit of security?}
+\label{section:5c}
+
+
+\section{DES bit complement}
+
+\begin{comment}
+DES has an incredible property concerning the bitwise complement of the input and output bits. The
+complement (meaning all Bits are inverted) of a bit stream A is given with A0(example: If A = 0110
+the complement is A0 = 1001.) “bXOR“ is the bitwise XOR. We want to show that: If
+y = DES_k(x)
+than also is:
+y_0 = DES_k0 (x0):
+Meaning if we sent the complement of the message and the key than the complement of the original
+cipher text is returned. Your exercise is to proof this property. (Hint: Try to proof the property for any
+round instead of calculating all 16 rounds!)
+\end{comment}

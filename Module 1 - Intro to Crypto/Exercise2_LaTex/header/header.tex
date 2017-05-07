@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+%% Languages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+%% quotations
+\usepackage{csquotes}% Recommended
+
+%% Graphics and colors
+\usepackage[svgnames]{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{color}
+%% Math Packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%% to be able to write multi-line comments, display text "as-is", etc.
+\usepackage{verbatim}
+%%packages for displaying multiple figures side by side
+\usepackage{caption}
+\usepackage{subcaption}
+%% use url's
+\usepackage{url}
+%% used to be able to call the name of the chapter instead of the number
+\usepackage{nameref}
+%% to be able to change bulletpoint look in lists
+\usepackage{enumitem}
+%% use tikz library for figures, nodes, images, etc.
+\usetikzlibrary{shapes.geometric,arrows}
+%% valid extensions for import in figures, etc.
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.bmp}
+
+%% decrease size of listing font
+\lstset{%
+basicstyle=\ttfamily\footnotesize\bfseries,
+columns=fullflexible}
+%% colours the links in the pdf
+\hypersetup{
+  colorlinks = true, %Colours links instead of ugly boxes
+  urlcolor = blue, %Colour for external hyperlinks
+  linkcolor = black, %Colour of internal links
+  citecolor = red %Colour of citations
+}
+
+\renewcommand\thesubsection{\alph{subsection})}
