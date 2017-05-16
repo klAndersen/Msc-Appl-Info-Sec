@@ -5,7 +5,16 @@
 \usepackage{hyperref}
 %% quotations
 \usepackage{csquotes}% Recommended
-
+%% bibtex package using harvard style
+%% (the harvard style got replaced by natbib, which got replaced by biblatex)
+\usepackage[style=authoryear, % harvard style
+			bibstyle=authoryear, % harvard bibliography style
+			citestyle=authoryear, % harvard citing style
+			backend=biber, % backend
+			% able to go back from bibliography to location of citation
+			%% example: (cit. on p. 7), where 7 would take you back to that page
+			% backref=true,  
+			doi=true]{biblatex}
 %% Graphics and colors
 \usepackage[svgnames]{xcolor}
 \usepackage{listings}
@@ -26,21 +35,31 @@
 \usepackage{nameref}
 %% to be able to change bulletpoint look in lists
 \usepackage{enumitem}
+%% include path for figures, graphics, etc
+\graphicspath{ {../figures/} }
 %% use tikz library for figures, nodes, images, etc.
 \usetikzlibrary{shapes.geometric,arrows}
 %% valid extensions for import in figures, etc.
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.bmp}
-
+%% loads the bibliography for biblatex
+%% this is to enable auto-complete and being able to search through all entries
+\makeatletter
+\@ifpackageloaded{biblatex}{\addbibresource{../chapters/literature.bib}}{\bibliography{../chapters/literature}}
+\makeatother
 %% decrease size of listing font
 \lstset{%
-basicstyle=\ttfamily\footnotesize\bfseries,
-columns=fullflexible}
+	basicstyle=\ttfamily\footnotesize\bfseries,
+	columns=fullflexible}
 %% colours the links in the pdf
 \hypersetup{
-  colorlinks = true, %Colours links instead of ugly boxes
-  urlcolor = blue, %Colour for external hyperlinks
-  linkcolor = black, %Colour of internal links
-  citecolor = red %Colour of citations
+	colorlinks = true, %Colours links instead of ugly boxes
+	urlcolor = blue, %Colour for external hyperlinks
+	linkcolor = black, %Colour of internal links
+	citecolor = red %Colour of citations
 }
+%% changes the cite command into autocite
+\renewcommand*{\cite}{\autocite}
+%% adds comma between author--year; (author, year)
+\renewcommand*{\nameyeardelim}{\addcomma\space}
 
 \renewcommand\thesubsection{\alph{subsection})}

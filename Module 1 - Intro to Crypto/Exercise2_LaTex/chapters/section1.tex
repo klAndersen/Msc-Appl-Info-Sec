@@ -2,73 +2,343 @@
 
 \subsection{What was/is the name of the authority that called out for the development of DES?}
 \label{section:1a}
+DES was developed by IBM in cooperation with NSA, because the US government asked for a standard. 
+The representative for the US Goverment asking for the standard was NIST (National Institute of Standards and Technology), 
+who at  the time was known as NBS (National Bureau of Standards) \cite[p.~56]{Paar2010}.
 
 \subsection{In which year DES was standardised?}
 \label{section:1b}
+DES was first standardised in 1977, but it was only standardised for 10 years (up until 1987) \cite[p.~56]{Paar2010}.
 
 \subsection{Which authority also was said to have influenced the standardisation of DES?}
 \label{section:1c}
+NSA was the authority said to have influenced the DES standard.
 
 \subsection{Which company did submit the cipher?}
 \label{section:1d}
+IBM was the company that submitted the cipher, which was based on the Lucifer cipher. 
+IBM originally named it Lucifer, but after the review from NSA a modified version was returned named DES \cite[p.~113]{Trappe2006}.
 
 \subsection{Which kind of structure is used in Lucifer?}
 \label{section:1e}
+The structure used in Lucifer is the Feistel system (or Feistel Network \cite[p.~58]{Paar2010}), named after Horst Feistel who was part of the Lucifer development team \cite[p.~114]{Trappe2006}.
 
 \subsection{Which key length was supported by Lucifer, originally?}
 \label{section:1f}
-
+The original key length supported by Lucifer was 128-bits \cite[p.~276-277]{Menezes1997}, \cite[p.~56]{Paar2010}.
 
 \section{Basics of block ciphers}
 
-\subsection{what meaning does the (balanced) feistel-network have for the processing of data?}
+\subsection{What meaning does the (balanced) Feistel-network have for the processing of data?}
 \label{section:2a}
+It shortens the processing time by only doing the mathematical operation on half the input. 
+The other half is passed into the next round where it then is processed in the same way.
 
-\subsection{Point out the characteristics of a feistel-structure related to the encryption and decryption.}
+\subsection{Point out the characteristics of a Feistel-structure related to the encryption and decryption.}
 \label{section:2b}
+The main characteristic is that encryption and decryption are almost the same, and uses the same key for both operations. 
+When decrypting, you are simply reversing the encryption process, where the only difference is that for decryption you need a reversed key schedule.
 
-\subsection{Claude Shannon says there are two types of primitive Operations so build up strong encryption algorithms. Name and describe these two in a few sentences.}
+\subsection{Claude Shannon says there are two types of primitive operations to build up strong encryption algorithms.}
 \label{section:2c}
+The two types of primitive operations named by Shannon is Confusion and Diffusion. 
+The aim of Confusion is to obscure the relationship between the plain - and cipher-text (e.g. substitution).
+Diffusion focuses on hiding the plain-texts statistical properties, by spreading each plain-text bit over many cipher-text bits (e.g. permutation).
+%p.57
 
 \section{Avalanche effect in DES}
-
-\begin{comment}
-For a good block cipher it is important that a small change in the input bits results in a great change
-in the output bits( This effect is called avalanche effect). In the following we will try to evaluate this
-effect in DES. For this we use an input string with an one at the 19th position(x25 = 1). All other
-Bits are set to zeros. The 56 bits of the key also are set to zero(this means all the round keys are zero.
-Remember that the input bit string first runs through the initial permutation!)
-\end{comment}
-
 \subsection{Which S-boxes are influenced by this bit in the first round. Also calculate the input bits of all S-boxes.}
 \label{section:3a}
+Input-String: \{x$_{1}$ = 0, \ldots, x$_{19}$=1, \ldots, x$_{64}$ = 0\} \\
+56-bit key: \{k$_{1}$ = 0, \ldots, k$_{56}$ = 0\} \\
+IP-String: \{x$_{1}$ = 0, \ldots, x$_{45}$=1, \ldots, x$_{64}$ = 0\} \\
+\vspace{1em}\newline
+DES contains 16 rounds after the initial permutation. 
+Through each round, the bits are split into two; left and right side. 
+The right side is passed directly into the next rounds left side, but the current left side is encrypted by XOR'ing the content with the f-function.
+The f-function contains 4 steps:
+\begin{enumerate}
+	\item Expansion: Using an expansion box (E-Box), going from 32-bits to 48-bits
+	\item XOR with the 48-bits round key
+	\item S-box substitution
+	\item Permutation (to go back from 48-bits to 32-bits)
+\end{enumerate}
 
-\subsection{Calculate the bit string at the end of the first round. (L1 und R1)}
+\noindent
+The right side consists of 32-bits, where the 13$^{th}$ bit is set to 1.
+Based on the E-box shown in \cite[p.~63]{Paar2010}, the E-box looks like this:
+E-Box: \{x$_{1}$ = 0, \ldots, x$_{18}$=1, x$_{19}$ = 0, x$_{20}$=1, \ldots, x$_{48}$ = 0\}. 
+XOR'ing the E-box with the round key makes no changes (because 0 $\oplus$ 0 = 0; 1 $\oplus$ 1 = 0).
+~
+\vspace{1em}\newline
+\noindent
+Which S-box(es) are affected by the set bit (marked with 'X') and how do they look like? \\
+Each S-box contains 6-bits, where the 6-bits comes from the result of the E-box $\oplus$ Round-key$_{i=1}$. This means that the only "affected" S-boxes are S3 and S4. 
+\vspace{1em}\newline
+\noindent
+S1
+\framebox[15pt][0]{}\quad
+S2
+\framebox[15pt][0]{}\quad
+S3
+\framebox[1.1\width]{X}\quad
+S4
+\framebox[1.1\width]{X}\quad
+S5
+\framebox[15pt][0]{}\quad
+S6
+\framebox[15pt][0]{}\quad
+S7
+\framebox[15pt][0]{}\quad
+S8
+\framebox[15pt][0]{}\quad
+~
+\vspace{1em}\newline
+\noindent
+S-Box 1: 14 = 1110\footnote{Based on S-box tables shown in \cite[p.~64-65]{Paar2010}.} \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 2: 15 = 1111 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 3: 13 = 1101 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  1 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 4: 01 = 0001 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 1 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 5: 02 = 0010 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 6: 12 = 1100 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 7: 04 = 0100 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 8: 13 = 1101 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline
+\noindent
+S-box output: \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l | } \hline 
+	1 & 1 & 1 & 0 & 1 &  1 & 1 & 1 \\ \hline
+	1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\ \hline
+	0 & 0 & 1 & 0 & 1 &  1 & 0 & 0 \\ \hline
+	0 & 1 & 0 & 0 & 1 &  1 & 0 & 1 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline
+\noindent
+After permutation on the outputted S-boxes\footnote{Based on permutation table shown in \cite[p.~66]{Paar2010}.}: \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l | } \hline 
+	1 & 1 & 0 & 1 & 1 &  1 & 0 & 0 \\ \hline
+	1 & 0 & 0 & 1 & 1 &  0 & 0 & 1 \\ \hline
+	1 & 1 & 0 & 0 & 1 &  0 & 1 & 0 \\ \hline
+	1 & 0 & 1 & 1 & 1 &  1 & 0 & 0 \\ \hline
+\end{tabular}
+
+\subsection{Calculate the bit string at the end of the first round. (L1 and R1)}
 \label{section:3b}
+L$_{1}$ = R$_{0}$ \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l |  } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 1 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+\end{tabular}
+\clearpage\noindent
+% space
+R$_{1}$ = L$_{1} \oplus$ f(R$_{0} \oplus K_{0}$)\\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l |  } \hline 
+	1 & 1 & 0 & 1 & 1 &  1 & 0 & 0 \\ \hline
+	1 & 0 & 0 & 1 & 0 &  0 & 0 & 1 \\ \hline
+	1 & 1 & 0 & 0 & 1 &  0 & 1 & 0 \\ \hline
+	1 & 0 & 1 & 1 & 1 &  1 & 0 & 0 \\ \hline
+\end{tabular}
 
-\subsection{Calculate the output bits for the case that all input bits are zeros! (x25=0). How many bits did change in L1 and R1 compared to exercise b)?}
+\subsection{Calculate the output bits for the case that all input bits are zeros!  How many bits did change in L1 and R1 compared to exercise b)?}
 \label{section:3c}
-
+Input-String: \{x$_{1}$ = 0, \ldots, x$_{64}$ = 0\} \\
+56-bit key: \{k$_{1}$ = 0, \ldots, k$_{56}$ = 0\} \\
+IP-String: \{x$_{1}$ = 0, \ldots, x$_{64}$ = 0\} 
+~
+\vspace{1em}\newline
+\noindent
+S-Box 1: 14 = 1110\footnote{Based on S-box tables shown in \cite[p.~64-65]{Paar2010}.} \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 2: 15 = 1111 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 3: 10 = 1010 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 4: 07 = 0111 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 5: 02 = 0010 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 6: 12 = 1100 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 7: 04 = 0100 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{1em}\newline
+\noindent
+S-Box 8: 13 = 1101 \\
+\begin{tabular}{ | l | l | l | l | l | l | } \hline 
+	0 & 0 & 0 & 0 & 0 &  0 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline
+\noindent
+S-box output: \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l | } \hline 
+	1 & 1 & 1 & 0 & 1 &  1 & 1 & 1 \\ \hline
+	1 & 0 & 1 & 0 & 0 &  1 & 1 & 1 \\ \hline
+	0 & 0 & 1 & 0 & 1 &  1 & 0 & 0 \\ \hline
+	0 & 1 & 0 & 0 & 1 &  1 & 0 & 1 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline
+\noindent
+After permutation on the outputted S-boxes\footnote{Based on permutation table shown in \cite[p.~66]{Paar2010}.}: \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l | } \hline 
+	1 & 1 & 0 & 1 & 1 &  0 & 0 & 0 \\ \hline
+	1 & 1 & 0 & 1 & 1 &  0 & 0 & 0 \\ \hline
+	1 & 1 & 0 & 1 & 1 &  0 & 1 & 1 \\ \hline
+	1 & 0 & 1 & 1 & 1 &  1 & 0 & 0 \\ \hline
+\end{tabular} \\
+\noindent
+L$_{1}$ = R$_{0}$ \\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l |} \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+	0 & 0 & 0 & 0 & 0 &  0 & 0 & 0 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline\noindent
+% space
+R$_{1}$ = L$_{1} \oplus$ f(R$_{0} \oplus K_{0}$)\\
+\begin{tabular}{ | l | l | l | l | l | l | l |  l |} \hline
+	1 & 1 & 0 & 1 & 1 &  0 & 0 & 0 \\ \hline
+	1 & 1 & 0 & 1 & 1 &  0 & 0 & 0 \\ \hline
+	1 & 1 & 0 & 1 & 1 &  0 & 1 & 1 \\ \hline
+	1 & 0 & 1 & 1 & 1 &  1 & 0 & 0 \\ \hline
+\end{tabular}
+~
+\vspace{0.5em}\newline\noindent
+% space	
+Amount of flipped bits: 7. \\ 
+1 in L$_{1}$ and 6 in R$_{1}$.
 
 \section{Non-linearity of S-boxes}
+S$_{i}$(x$_{1}$) $\oplus$ S$_{i}$(x$_{2}$) $\neq$ S$_{i}$(x$_{1} \oplus$ x$_{2}$)
 
 \begin{comment}
 An important property of DES is the non-linearity of the S-boxes. In this exercise we want to verify
 this property by comparing the output bits for different input bits in a specific S-box S i. Show that for
-S 5 the following computation rule can be applied: 2
-S i(x1) bXOR S i(x2) , S i(x1 bXOR x2):
+S_5 the following computation rule can be applied: 2
+S i(x1) bXOR S i(x2) , S i(x_1 bXOR x_2):
 "bXOR" is called a bitwise XOR.
 \end{comment}
 
 \subsection{x1 = 000001, x2 = 100000}
 \label{section:4a}
+S$_{5}$(x$_{1}$) = S$_{5}$(000001) = 14 = 1110 \\
+S$_{5}$(x$_{2}$) = S$_{5}$(100000) = 04 = 0100 
+\vspace{0.5em}\newline
+S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) = 1110 $\oplus$ 0100 = \underline{1010}
+\vspace{1em}\newline
+x$_{1} \oplus$ x$_{2}$ = 000001 $\oplus$ 100000 = 100001 \\
+S$_{5}$(x$_{1} \oplus$ x$_{2}$) = S$_{5}$(100001) = 11 = \underline{1011}
+\vspace{1em}\newline
+\underline{\underline{S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) $\neq$ S$_{5}$(x$_{1} \oplus$ x$_{2}$) $\Rightarrow$ 1010  $\neq$ 1011}}
 
 \subsection{x1 = 001100, x2 = 111001}
 \label{section:4b}
+S$_{5}$(x$_{1}$) = S$_{5}$(001100) = 11 = 1011 \\
+S$_{5}$(x$_{2}$) = S$_{5}$(111001) = 10 = 1010 
+\vspace{0.5em}\newline
+S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) = 1011 $\oplus$ 1010 = \underline{0001}
+\vspace{1em}\newline
+x$_{1} \oplus$ x$_{2}$ = 001100 $\oplus$ 111001  = 110101 \\
+S$_{5}$(x$_{1} \oplus$ x$_{2}$) = S$_{5}$(110101) = 00 = \underline{0000}
+\vspace{1em}\newline
+\underline{\underline{S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) $\neq$ S$_{5}$(x$_{1} \oplus$ x$_{2}$) $\Rightarrow$ 0001  $\neq$ 0000}}
 
 \subsection{x1 = 010011, x2 = 011110}
 \label{section:4c}
-
+S$_{5}$(x$_{1}$) = S$_{5}$(010011) = 00 = 0000 \\
+S$_{5}$(x$_{2}$) = S$_{5}$(011110) = 09 = 1001 
+\vspace{0.5em}\newline
+S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) = 0000 $\oplus$ 1001 = \underline{1001}
+\vspace{1em}\newline
+x$_{1} \oplus$ x$_{2}$ = 010011 $\oplus$ 011110  = 001101 \\
+S$_{5}$(x$_{1} \oplus$ x$_{2}$) = S$_{5}$(001101) = 13 = \underline{1101}
+\vspace{1em}\newline
+\underline{\underline{S$_{5}$(x$_{1}$) $\oplus$ S$_{5}$(x$_{2}$) $\neq$ S$_{5}$(x$_{1} \oplus$ x$_{2}$) $\Rightarrow$ 1001  $\neq$ 1101}}
 
 \section{Brute-Force Attacke auf den DES}
 
@@ -83,15 +353,27 @@ frequency of 126 MHz.
 
 \subsection{How many chips of this kind do we have to run parallel so we can calculate the DES-Key in a single day?}
 \label{section:5a}
+- 
 
 \subsection{How much would these chips cost if one chip costs 10 Euro and we calculate 100\% overhead for running the chips parallel, the power supply and anything else?}
-	\label{section:5b}
-	
+\label{section:5b}
+-
 \subsection{Why is this design of such a key searching machine only the upper limit of security?}
 \label{section:5c}
-
+Because:
+\begin{quote}
+	"DES has four weak keys and six pairs of semi-weak keys" \cite[p.~257]{Menezes1997}.
+\end{quote}
+What this means is that DES can create identical sub-keys, which then also causes the encryption and decryption function to coincide. 
+Furthermore if an attacker get hold of large amounts of cipher - and plain-text, an analytical attack would be possible.
+\vspace{0.5em}\newline
+Another issue, which may not be that relevant for this question, is also the aspect of social engineering.
+To use a classic comic strip as an example - the visualization is that hackers would spend millions on dollars trying to build the "perfect" machine.
+When in fact they would just go to a tool shop, buy a \$5 hammer, and beat up the person with the right access. 
+Therefore one should also invest just as much into "human security" as hardware/software security.
 
 \section{DES bit complement}
+-
 
 \begin{comment}
 DES has an incredible property concerning the bitwise complement of the input and output bits. The
