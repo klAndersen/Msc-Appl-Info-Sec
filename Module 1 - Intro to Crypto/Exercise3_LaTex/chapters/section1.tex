@@ -1,13 +1,33 @@
 \section{Addition in GF(2$^{8}$)}
 
+%P(x) = x$^{8}$ + x$^{4}$ + x$^{3}$ + x + 1.
+
 \subsection{A(x) = x$^{7}$ + x$^{5}$ + x$^{3}$ + x$^{2}$ + 1, B(x) = x$^{4}$ + x$^{3}$ + 1}
 \label{section:1a}
+\begin{equation}
+\begin{split}
+A(x) = x^{7} + x^{5} + x^{3} + x^{2} + 1, \\
+B(x) = x^{4} + x^{3} + 1 \\
+\end{split}
+\end{equation}
 
 \subsection{A(x) = x$^{5}$ + $^{x3}$ + x$^{2}$, B(x) = x$^{6}$ + x$^{4}$ + x$^{3}$ + 1}
 \label{section:1b}
+\begin{equation}
+\begin{split}
+A(x) = x^{5} + ^{x3} + x^{2}, \\
+B(x) = x^{6} + x^{4} + x^{3} + 1
+\end{split}
+\end{equation}
 
 \subsection{A(x) = x$^{6}$ + x$^{5}$ + x$^{3}$ + x + 1, B(x) = x$^{7}$ + x$^{6}$ + x$^{4}$ + x$^{2}$ + 1}
 \label{section:1c}
+\begin{equation}
+\begin{split}
+A(x) = x^{6} + x^{5} + x^{3} + x + 1, \\
+B(x) = x^{7} + x^{6} + x^{4} + x^{2} + 1
+\end{split}
+\end{equation}
 
 \subsection{Which effect has the reduction polynome in general on the result of an addition?}
 \label{section:1d}
@@ -25,19 +45,72 @@ Consider the finite field F(5$^{4}$) with the irreducible reduction polynome P(x
 
 \subsection{Compute x$^{4}$ mod P(x), x$^{5}$ mod P(x) and x$^{6}$ mod P(x).}
 \label{section:2c}
+\begin{equation}
+\begin{split}
+x^{4} mod P(x), x^{5} mod P(x) \\ 
+x^{6} mod P(x)
+\end{split}
+\end{equation}
 
 \subsection{Calculate A(x) $\times$ B(x) mod P(x) for A(x) = x$^{4}$ + x$^{1}$ + 2, B(x) = 2x$^{3}$ + 2x$^{2}$ + 1}
 \label{section:2d}
+\begin{equation}
+\begin{split}
+A(x) \times B(x)~mod~P(x); \\
+A(x) = x^{4} + x^{1} + 2, \\ 
+B(x) = 2x^{3} + 2x^{2} + 1
+\end{split}
+\end{equation}
 
 \section{Multiplication in GF(2$^{8}$)}
 
 \subsection{Compute A(x) $\times$ B(x) mod P(x) for the following values and give the result in HEX}
 \label{section:3a}
 
+\subsubsection{A(x) = x$^{7}$ + x$^{4}$ + x$^{x3}$ + x + 1, B(x) = x }
+\label{section:3aa}
+\begin{equation}
+\begin{split}
+A(x) = x^{7} + x^{4} + x^{x3} + x + 1, \\
+B(x) = x 
+\end{split}
+\end{equation}
+
+\subsubsection{x$^{6}$ + x$^{3}$ + x + 1, B(x) = x + 1}
+\label{section:3ab}
+\begin{equation}
+\begin{split}
+A(x) = x^{6} + x^{3} + x + 1,  \\
+B(x) = x + 1 
+\end{split}
+\end{equation}
+
+\subsubsection{x$^{7}$ + x$^{6}$ + x$^{5}$, B(x) = x$^{3}$ + x}
+\label{section:3ac}
+\begin{equation}
+\begin{split}
+A(x) = x^{7} + x^{6} + x^{5}, \\ 
+B(x) = x^{3} + x
+\end{split}
+\end{equation}
+
 \subsection{With which operation is it possible to realise both these multiplications B$_{1}$(x) = x, B$_{2}$(x) = x+1 efficiently}
 \label{section:3b}
 
 \section{Avalanche effect in AES}
+\begin{comment}
+W = ($w_{0};w_{1};w_{2};w_{3}$) = (0x00000000; 0x00100000; 0x00000000; 0x00000000)
+
+K0 = (0x2B7E1516)
+(0x28AED2A6)
+(0xABF71588)
+(0x09CF4F3C)
+
+K1 = (0xA0FAFE17)
+(0x88542CB1)
+(0x23A33939)
+(0x2A6C7605)
+\end{comment}
 
 \subsection{Calculate the respective Output to the Input W after the first round of AES! use the round-keys K$_{0}$, \ldots, K$_{1}$!}
 \label{section:4a}
@@ -55,7 +128,7 @@ Consider the finite field F(5$^{4}$) with the irreducible reduction polynome P(x
 
 \subsection{Given is the main key K = (0x00000008; 0x00000004; 0x00000002; 0x00000001). Find the sub-key K$_{1}$ after the first round of key-generation.}
 \label{section:5b}
-
+% K = (0x00000008; 0x00000004; 0x00000002; 0x00000001).
 
 \section{Solution template for Avalanche effect in AES}
 
