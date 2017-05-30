@@ -4,19 +4,37 @@
 
 \subsection{A(x) = x$^{7}$ + x$^{5}$ + x$^{3}$ + x$^{2}$ + 1, B(x) = x$^{4}$ + x$^{3}$ + 1}
 \label{section:1a}
+Since addition uses XOR, I have "padded" the equation with zero's to better display the difference (and equality) between A(x) and B(x).
+For this, the \LaTeX \textit{\\frac\{num\}\{den\}} was used.
 \begin{equation}
 \begin{split}
 A(x) = x^{7} + x^{5} + x^{3} + x^{2} + 1, \\
 B(x) = x^{4} + x^{3} + 1 \\
+~ \\
+\textit{Comparison listing:} \\
++ \frac{A(x)}{B(x)} \Rightarrow + \frac{x^{7} + 0 + x^{5} + 0 + x^{3} + x^{2} + 0 + 1}{0 + 0 + 0 + x^{4} + x^{3} + 0 + 0 + 1} \\
+~ \\
+\textit{Modulus 2 cancels out those that are equal:} \\
+A (x) + B(x) \Rightarrow x^{7} + x^{5} + x^{4} + (1 + 1) x^{3} + x^{2} + (1 + 1) \\
+A (x) + B(x) \Rightarrow x^{7} + x^{5} + x^{4} + 0x^{3} + x^{2} + 0 \\
+\underline{\underline{A (x) + B(x) = x^{7} + x^{5} + x^{4} + x^{2}}}
 \end{split}
 \end{equation}
 
-\subsection{A(x) = x$^{5}$ + $^{x3}$ + x$^{2}$, B(x) = x$^{6}$ + x$^{4}$ + x$^{3}$ + 1}
+\subsection{A(x) = x$^{5}$ +x$^{3}$ + x$^{2}$, B(x) = x$^{6}$ + x$^{4}$ + x$^{3}$ + 1}
 \label{section:1b}
 \begin{equation}
 \begin{split}
-A(x) = x^{5} + ^{x3} + x^{2}, \\
-B(x) = x^{6} + x^{4} + x^{3} + 1
+A(x) = x^{5} + x^{3} + x^{2}, \\
+B(x) = x^{6} + x^{4} + x^{3} + 1  \\
+~ \\
+\textit{Comparison listing:} \\
++ \frac{A(x)}{B(x)} \Rightarrow + \frac{0 + x^{5} + 0 + x^{3} + x^{2} + 0 + 0}{x^{6} + 0 + x^{4} + x^{3} +0 + 0 + 1} \\
+~ \\
+\textit{Modulus 2 cancels out those that are equal:} \\
+A (x) + B(x) \Rightarrow x^{6} + x^{5} + x^{4} + (1 + 1)x^{3} + x^{2} + 1 \\
+A (x) + B(x) \Rightarrow x^{6} + x^{5} + x^{4} + 0x^{3} + x^{2} + 1 \\
+\underline{\underline{A (x) + B(x) = x^{6} + x^{5} + x^{4} + x^{2} + 1}}
 \end{split}
 \end{equation}
 
@@ -26,12 +44,21 @@ B(x) = x^{6} + x^{4} + x^{3} + 1
 \begin{split}
 A(x) = x^{6} + x^{5} + x^{3} + x + 1, \\
 B(x) = x^{7} + x^{6} + x^{4} + x^{2} + 1
+~ \\
+\textit{Comparison listing:} \\
++ \frac{A(x)}{B(x)} \Rightarrow + \frac{0 + x^{6} + x^{5} + 0 + x^{3} + 0 + x + 1}{x^{7} + x^{6} + 0 + x^{4} + 0 + x^{2} + 0 + 1} \\
+~ \\
+\textit{Modulus 2 cancels out those that are equal:} \\
+A (x) + B(x) \Rightarrow x^{7} + (1 + 1)x^{6} + x^{5} + x^{4} +  x^{3} + x^{2} + x + (1 + 1)  \\
+A (x) + B(x) \Rightarrow x^{7} + 0x^{6} + x^{5} + x^{4} +  x^{3} + x^{2} + x + 0 \\
+\underline{\underline{A (x) + B(x) = x^{7} + x^{5} + x^{4} +  x^{3} + x^{2} + x}}
 \end{split}
 \end{equation}
 
 \subsection{Which effect has the reduction polynome in general on the result of an addition?}
 \label{section:1d}
-
+The reduction polynome in general has a XOR effect both for addition and substitution. 
+This means you can just use the XOR to find the result, because each number is its additive inverse.
 
 \section{Multiplication in GF(5$^{4}$)}
 Consider the finite field F(5$^{4}$) with the irreducible reduction polynome P(x) = x$^{4}$ + x$^{2}$ + 2x + 2.
@@ -112,8 +139,9 @@ K1 = (0xA0FAFE17)
 (0x2A6C7605)
 \end{comment}
 
-\subsection{Calculate the respective Output to the Input W after the first round of AES! use the round-keys K$_{0}$, \ldots, K$_{1}$!}
+\subsection{Calculate the respective Output to the Input W after the first round of AES!}
 \label{section:4a}
+%  use the round-keys K$_{0}$, \ldots, K$_{1}$!
 
 \subsection{Compute all the output bytes for the case that all the input bytes are zero (solution only in HEX)}
 \label{section:4b}
