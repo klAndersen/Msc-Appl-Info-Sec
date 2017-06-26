@@ -1,0 +1,104 @@
+\section{Square and Multiply}
+
+\subsection{x = 5; e = 54; m = 151}
+\label{sec:1a}
+Fast exponentiation - e$_{b}$ = 11011$_{2}$: \\
+\begin{equation}
+\begin{split}
+x \cdot x = x^{2} \quad\Rightarrow\quad (x^{1_{2}})^2 = x^{10_{2}} \\
+x^{2} \cdot x = x^{3} \quad\Rightarrow\quad x^{10_{2}} \cdot x^{1_{2}} = x^{11_{2}} \\
+x^{3} \cdot x^{3} = x^{6} \quad\Rightarrow\quad (x^{11_{2}})^2 = x^{110_{2}} \\
+x^{6} \cdot x^{6} = x^{12} \quad\Rightarrow\quad (x^{110_{2}})^2 = x^{1100_{2}} \\
+x^{12} \cdot x = x^{13} \quad\Rightarrow\quad x^{1100_{2}} \cdot x^{1_{2}} = x^{1101_{2}} \\
+x^{13} \cdot x^{13} = x^{26} \quad\Rightarrow\quad (x^{1101_{2}})^2 = x^{11010_{2}} \\
+x^{26} \cdot x = x^{27} \quad\Rightarrow\quad x^{11010_{2}} \cdot x^{1_{2}} = x^{11011_{2}} \\
+x^{27} \cdot x^{27} = x^{54} \quad\Rightarrow\quad (x^{11011_{2}})^2 = x^{110110_{2}} 
+\end{split}
+\end{equation}
+
+\subsection{x = 8; e = 127; m = 151}
+\label{sec:1b}
+Fast exponentiation - e$_{b}$ = 1111111: \\
+\begin{equation}
+\begin{split}
+x \cdot x = x^{2} \quad\Rightarrow\quad (x^{1_{2}})^2 = x^{10_{2}} \\
+x^{2} \cdot x = x^{3} \quad\Rightarrow\quad x^{10_{2}} \cdot x^{1_{2}} = x^{11_{2}} \\
+x^{3} \cdot x^{3} = x^{6} \quad\Rightarrow\quad (x^{11_{2}})^2 = x^{110_{2}} \\
+x^{6} \cdot x = x^{7} \quad\Rightarrow\quad x^{110_{2}} \cdot x^{1_{2}} = x^{111_{2}} \\
+x^{7} \cdot x^{7} = x^{14} \quad\Rightarrow\quad (x^{111_{2}})^2 = x^{1110_{2}} \\
+x^{14} \cdot x = x^{15} \quad\Rightarrow\quad x^{1110_{2}} \cdot x^{1_{2}} = x^{1111_{2}} \\
+x^{15} \cdot x^{15} = x^{30} \quad\Rightarrow\quad (x^{1111_{2}})^2 = x^{11110_{2}} \\
+x^{30} \cdot x = x^{31} \quad\Rightarrow\quad x^{11110_{2}} \cdot x^{1_{2}} = x^{11111_{2}} \\
+x^{31} \cdot x^{31} = x^{62} \quad\Rightarrow\quad (x^{11111_{2}})^2 = x^{111110_{2}} \\
+x^{62} \cdot x = x^{63} \quad\Rightarrow\quad x^{111110_{2}} \cdot x^{1_{2}} = x^{111111_{2}} \\
+x^{63} \cdot x^{63} = x^{126} \quad\Rightarrow\quad (x^{111111_{2}})^2 = x^{1111110_{2}} \\
+x^{126} \cdot x = x^{127} \quad\Rightarrow\quad x^{1111110_{2}} \cdot x^{1_{2}} = x^{1111111_{2}} 
+\end{split}
+\end{equation}
+
+\subsection{x = 7; e = 52; m = 197}
+\label{sec:1c}
+Fast exponentiation - e$_{b}$ = 110100: \\
+\begin{equation}
+\begin{split}
+x \cdot x = x^{2} \quad\Rightarrow\quad (x^{1_{2}})^2 = x^{10_{2}} \\
+x^{2} \cdot x = x^{3} \quad\Rightarrow\quad x^{10_{2}} \cdot x^{1_{2}} = x^{11_{2}} \\
+x^{3} \cdot x^{3} = x^{6} \quad\Rightarrow\quad (x^{11_{2}})^2 = x^{110_{2}} \\
+x^{6} \cdot x^{6} = x^{12} \quad\Rightarrow\quad (x^{110_{2}})^2 = x^{1100_{2}} \\
+x^{12} \cdot x = x^{13} \quad\Rightarrow\quad x^{1100_{2}} \cdot x^{1_{2}} = x^{1101_{2}} \\
+x^{13} \cdot x^{13} = x^{26} \quad\Rightarrow\quad (x^{1101_{2}})^2 = x^{11010_{2}} \\
+x^{26} \cdot x^{26} = x^{52} \quad\Rightarrow\quad (x^{11010_{2}})^2 = x^{110100_{2}} 
+\end{split}
+\end{equation}
+
+\subsection{x = 9; e = 44; m = 197}
+\label{sec:1d}
+\begin{equation}
+\begin{split}
+x \cdot x = x^{2} \quad\Rightarrow\quad (x^{1_{2}})^2 = x^{10_{2}} \\
+x^{2} \cdot x^{2} = x^{4} \quad\Rightarrow\quad (x^{10_{2}})^2 = x^{100_{2}} \\
+x^{4} \cdot x = x^{5} \quad\Rightarrow\quad x^{100_{2}} \cdot x^{1_{2}} = x^{101_{2}} \\
+x^{5} \cdot x^{5} = x^{10} \quad\Rightarrow\quad (x^{101_{2}})^2 = x^{1010_{2}} \\
+x^{10} \cdot x = x^{11} \quad\Rightarrow\quad x^{1010_{2}} \cdot x^{1_{2}} = x^{1011_{2}} \\
+x^{11} \cdot x^{11} = x^{22} \quad\Rightarrow\quad (x^{1011_{2}})^2 = x^{10110_{2}} \\
+x^{22} \cdot x^{22} = x^{44} \quad\Rightarrow\quad (x^{10110_{2}})^2 = x^{101100_{2}} \\
+\end{split}
+\end{equation}
+
+\section{RSA Ver- und Entschlüsselung}
+
+\subsection{p = 19; q = 43; e = 67; x = 143}
+\label{sec:2a}
+\begin{equation}
+\begin{split}
+n = p \cdot q = 19 \cdot 43 = 817 \\
+\varnothing(n) = (p-1)(q-1) = (19-1)(43-1) \Rightarrow 18 \cdot 42 = 756 \\
+K_{pub} = (n, e) = (817, 67) \\
+x^{e} ~ mod ~ n = 143^{167} ~ mod ~ 817
+\end{split}
+\end{equation}
+
+\subsection{p = 27; q = 37; e = 117; x = 666}
+\label{sec:2b}
+\begin{equation}
+\begin{split}
+n = p \cdot q = 27 \cdot 37 = 999 \\
+\varnothing(n) = (p-1)(q-1) = (27-1)(37-1) \Rightarrow 26 \cdot 36 = 936 \\
+K_{pub} = (n, e) = (999, 117) \\
+x^{e} ~ mod ~ n = 666^{999} ~ mod ~ 817
+\end{split}
+\end{equation}
+
+\subsection{p = 23; q = 31; d = 449; y = 25}
+\label{sec:2c}
+\begin{equation}
+\begin{split}
+n = p \cdot q = 23 \cdot 31 = 713 \\
+\varnothing(n) = (p-1)(q-1) = (23-1)(31-1) \Rightarrow 22 \cdot 30 = 660 \\
+K_{priv} = (d) = 449 \\
+y^{d} ~ mod ~ n = 25^{449} ~ mod ~ 713
+\end{split}
+\end{equation}
+
+\section{Angrif auf RSA}
+-
